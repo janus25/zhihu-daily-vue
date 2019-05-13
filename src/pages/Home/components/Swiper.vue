@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
   <swiper :options="swiperOption" v-if="showSwiper">
-    <swiper-slide v-for="item in banner" :key="item.id" @click="bannerHandleClick(item.id)">
+    <swiper-slide v-for="item in banner" :key="item.id" @click.native="bannerHandleClick(item.id)">
       <img :src="item.image" alt="item.title" class="swiper-img">
       <span>{{item.title}}</span>
     </swiper-slide>
@@ -34,10 +34,11 @@ export default {
     this.getData()
   },
   methods: {
+    // 获取swiper列表数据
     getData () {
       axios.get('api/news/latest')
         .then(res => {
-          console.log(res.data.top_stories)
+          // console.log(res.data.top_stories)
           this.banner = res.data.top_stories
         })
         .catch(error => {
@@ -45,7 +46,7 @@ export default {
         })
     },
     bannerHandleClick (id) {
-      router.push({name: 'newsDetail', params: {id: id}})
+      router.push({name: 'Detail', params: {id: id}})
     },
     // 修改图片链接
     attachImageUrl: function (srcUrl) {
@@ -53,6 +54,9 @@ export default {
         return srcUrl.replace(/http\w{0,1}:\/\/p/g, 'https://images.weserv.nl/?url=p')
       }
     }
+    // bannerHandleClick (id) {
+    //   router.push({name: 'Detail', params: {id: id}})
+    // }
   },
   computed: {
     showSwiper () {
