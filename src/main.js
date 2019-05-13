@@ -3,16 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import MintUi from 'mint-ui'
 import 'babel-polyfill' // 兼容安卓低版本白屏问题
 import router from './router'
 import store from './store'
 import fastClick from 'fastclick'
 import 'swiper/dist/css/swiper.css'
+import '././assets/styles/reset.css'
 
 Vue.config.productionTip = false
 // 移动端300ms点击延迟
 fastClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
+Vue.use(MintUi)
 
 /* eslint-disable no-new */
 new Vue({
